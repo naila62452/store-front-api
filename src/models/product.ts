@@ -14,8 +14,8 @@ export class ProductStore {
             const result = await connection.query(sql, [p.name, p.price])
             connection.release()
             return result.rows[0]
-        } catch(err) {
-            throw new Error (`Can not add product ${err}`)
+        } catch (err) {
+            throw new Error(`Can not add product ${err}`)
         }
     }
 
@@ -26,7 +26,7 @@ export class ProductStore {
             const result = await connection.query(sql)
             connection.release()
             return result.rows
-        } catch(err) {
+        } catch (err) {
             throw new Error(`Products not found ${err}`)
         }
     }
@@ -37,7 +37,7 @@ export class ProductStore {
             const result = await connection.query(sql, [id])
             connection.release()
             return result.rows[0]
-        } catch(err) {
+        } catch (err) {
             throw new Error(`Products not found ${err}`)
         }
     }

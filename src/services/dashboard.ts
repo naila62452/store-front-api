@@ -1,4 +1,4 @@
-import client from "../database";
+import client from "../database"
 
 export class DashboardQueries {
     async userOrderProduct(): Promise<{firstname: string}[]> {
@@ -15,7 +15,7 @@ export class DashboardQueries {
     async fiveMostPopular(): Promise<{name: string, price: number}[]> {
         try {
             const connection = await client.connect()
-            const sql = 'SELECT * FROM products GROUP BY name ORDERED BY count(*) DESC LIMIT 5'
+            const sql = 'SELECT * FROM products GROUP BY name ORDERED BY price DESC LIMIT 5'
             const result = await connection.query(sql)
             connection.release()
             return result.rows

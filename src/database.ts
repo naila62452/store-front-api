@@ -14,7 +14,7 @@ const {
     ENV
 } = process.env 
 
-let client
+let client: any
 console.log(ENV)
 
 if(ENV === 'test') {
@@ -35,7 +35,7 @@ if(ENV === 'dev') {
   })
 }
 
-export default client
+export default client;
 // let client
 // if(ENV === 'test') {
 //     client = new Pool({
