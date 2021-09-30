@@ -20,13 +20,6 @@ const addUser = async (req: Request, res: Response) => {
         ) {
             return res.status(400).json({ error: "Invalid input or missing fields" })
         }
-        // let newUser = await store.create({
-        //     email: { $eq: String(req.body.email) }
-        // });
-        // if (newUser) {
-        //     console.log("email exist")
-        //     return res.status(403).json({ error: `email already exists` })
-        // }
         const createUser = await store.create(user)
         let token = jwt.sign({ user: createUser }, process.env.TOKEN_SECRET as string);
         res.json(token)
@@ -35,10 +28,29 @@ const addUser = async (req: Request, res: Response) => {
     }
 }
 const getUser = async (req: Request, res: Response) => {
+    try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch (err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
     const user = await store.show(req.query.id as string)
     res.json(user);
 }
+
 const index = async (req: Request, res: Response) => {
+    try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch (err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
     const user = await store.index()
     res.json(user);
 }
