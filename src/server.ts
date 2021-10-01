@@ -6,7 +6,7 @@ import order_routes from './handler/orders';
 import dashboard_routes from './handler/dashboard';
 
 const app: express.Application = express();
-const address: string = 'http://localhost:3000';
+const address: string = 'http://localhost:5000';
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -18,4 +18,4 @@ dashboard_routes(app);
 app.listen(3000, function () {
   console.log(`starting app on: ${address}`);
 });
-export default app;
+export default app.listen(5000);
