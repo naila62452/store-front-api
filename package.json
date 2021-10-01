@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server.ts",
-    "test": "set ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test"
+    "test": "set ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,7 @@
     "@types/express": "^4.17.13",
     "@types/jasmine": "^3.9.1",
     "@types/jsonwebtoken": "^8.5.5",
-    "@types/node": "^16.9.4",
+    "@types/node": "^16.10.2",
     "@types/pg": "^8.6.1",
     "@types/sharp": "^0.29.2",
     "eslint": "^7.32.0",
@@ -31,6 +33,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jasmine-spec-reporter": "^7.0.0",
     "prettier": "^2.4.1",
+    "supertest": "^6.1.6",
     "ts-node": "^10.2.1",
     "tsc-watch": "^4.5.0",
     "typescript": "^4.4.3"

@@ -27,6 +27,20 @@ To get the data from database the following are the routes to store product, get
  app.get('/showall', showAllProducts);
  app.get('/show', showById);
 
+3. Order table:
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    status VARCHAR(64),
+    user_id bigint REFERENCES users(id),
+    product_id bigint REFERENCES products(id),
+    quantity integer
+);
+To get the data from database the following are the routes to store order, get order.
+
+    app.post('/addorder', addOrder);
+    app.post('/order/:id/product', addProduct)
+    app.get('/get-order', currentOrder)
+
 
 
 
