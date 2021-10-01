@@ -65,9 +65,6 @@ export class OrderStore {
       const sql = 'SELECT * FROM orders WHERE user_id = ($1)';
       const result = await connection.query(sql, [id]);
       const order = result.rows[0];
-      // if(order.status !== "active") {
-      //     throw new Error(`Could not get order because order status is ${order.status}`)
-      // }
       connection.release();
       return order;
     } catch (err) {
